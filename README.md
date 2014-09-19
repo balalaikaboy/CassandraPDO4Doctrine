@@ -5,12 +5,12 @@ CassandraPDO4Doctrine
 CassandraPDO4Doctrine is the Cassandra driver for Doctrine2. It extends Doctrine2 PDOConnection, using YACassandraPDO driver (https://github.com/Orange-OpenSource/YACassandraPDO). 
 
 ## Installation
-1. Download [Apache Cassandra PDO](https://github.com/Orange-OpenSource/YACassandraPDO) and compile into a PHP extension. 
-2. After cloning and building, make sure the pdo extension is enabled by adding this line to your cli php.ini file (usually /etc/php5/cli/php.ini):
+* Download [Apache Cassandra PDO](https://github.com/Orange-OpenSource/YACassandraPDO) and compile into a PHP extension. 
+* After cloning and building, make sure the pdo extension is enabled by adding this line to your cli php.ini file (usually /etc/php5/cli/php.ini):
 ```
 extension=pdo_cassandra.so
 ```
-3. Set up your Symfony2 project (or any PHP framework that uses Doctrine2) and copy the files in CassandraPDO4Doctrine directory into the coresponding folders.
+* Set up your Symfony2 project (or any PHP framework that uses Doctrine2) and copy the files in CassandraPDO4Doctrine directory into the coresponding folders.
 ```
 New files:
 vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOCassandra/Driver.php
@@ -27,7 +27,7 @@ vendor/doctrine/dbal/lib/Doctrine/DBAL/Types/FloatType.php (override getBindingT
 ```
 
 ## Usage
-1. Create a KEYSPACE and COLUMNFAMILY in your Cassandra for testing (use cqlsh or another tool that you prefer). Below is the stuff used for my test
+* Create a KEYSPACE and COLUMNFAMILY in your Cassandra for testing (use cqlsh or another tool that you prefer). Below is the stuff used for my test
 ```
 CREATE KEYSPACE mydb WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
 USE mydb;
@@ -39,7 +39,7 @@ INSERT INTO product (name, price, description, created) VALUES ('prod1', 1.00,'p
 INSERT INTO product (name, price, description, created) VALUES ('prod2', 2.00,'prod #2 desc',dateof(now()));
 INSERT INTO product (name, price, description, created) VALUES ('prod3', 3.00,'prod #3 desc',dateof(now()));
 ```
-2. Config your DB connection for Cassandra. E.g.
+* Config your DB connection for Cassandra. E.g.
 ```
 parameters:
     database_driver:   pdo_cassandra
@@ -49,10 +49,10 @@ parameters:
     database_user:     mydbuser
     database_password: mypass
 ```
-3. Tests
+* Tests
 All tests below are conducted on Symfony2 enviroment.
 
-- Create a new record
+  - Create a new record
 ```
 $product = new Product();
 $product->setName('A Foo Bar 1');
@@ -63,7 +63,7 @@ $em = $this->getDoctrine()->getManager();
 $em->persist($product);
 $em->flush();
 ```
-- Find records using repo object
+  - Find records using repo object
 ```
 $repo = $this->getDoctrine()
             ->getRepository('MyBundle:Product');
@@ -71,13 +71,13 @@ $products = $repo->findBy(
                 array('name' => 'A Foo Bar 1'),
                 array('created' => 'ASC')));
 ```
-- Find records using DQL
+  - Find records using DQL
 ```
 $em = $this->getDoctrine()->getManager();
 $query = $em->createQuery("SELECT p FROM MyBundle:Product p");
 $products = $query->getResult();
 ```
-- Find records using Doctrine's Query Builder
+  - Find records using Doctrine's Query Builder
 ```
 $repo = $this->getDoctrine()
             ->getRepository('MyBundle:Product');
@@ -92,7 +92,7 @@ $query = $repo->createQueryBuilder('p')
   ->getQuery();
 $products = $query->getResult();
 ```
-- Find records using Native SQL (i.e. CQL)
+  - Find records using Native SQL (i.e. CQL)
 ```
 $em = $this->getDoctrine()->getManager();
 $rsm = new ResultSetMapping();
@@ -104,7 +104,7 @@ $query = $em->createNativeQuery('SELECT * FROM product WHERE name = ?', $rsm);
 $query->setParameter(1, 'A Foo Bar 1');  
 var_dump($query->getResult());
 ```
-- Counting
+  - Counting
 ```
 $em = $this->getDoctrine()->getManager();
 $query = $em->createQuery("SELECT count(p.name) FROM MyBundle:Product p WHERE p.name= 'A Foo Bar 1' ORDER BY p.created ASC");
