@@ -5,12 +5,12 @@ CassandraPDO4Doctrine
 CassandraPDO4Doctrine is the Cassandra driver for Doctrine2. It extends Doctrine2 PDOConnection, using YACassandraPDO driver (https://github.com/Orange-OpenSource/YACassandraPDO). 
 
 ## Installation
-1. Download [Apache Cassandra PDO](https://github.com/Orange-OpenSource/YACassandraPDO) and compile into a PHP extension. 
-2. After cloning and building, make sure the pdo extension is enabled by adding this line to your cli php.ini file (usually /etc/php5/cli/php.ini):
+ 1. Download [Apache Cassandra PDO](https://github.com/Orange-OpenSource/YACassandraPDO) and compile into a PHP extension. 
+ 2. After cloning and building, make sure the pdo extension is enabled by adding this line to your cli php.ini file (usually /etc/php5/cli/php.ini):
 ```
 extension=pdo_cassandra.so
 ```
-3.Set up your Symfony2 project (or any PHP framework that uses Doctrine2) and copy the files in CassandraPDO4Doctrine directory into the coresponding folders.
+ 3. Set up your Symfony2 project (or any PHP framework that uses Doctrine2) and copy the files in CassandraPDO4Doctrine directory into the coresponding folders.
 ```
 * New files:
 vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOCassandra/Driver.php
@@ -40,7 +40,7 @@ INSERT INTO product (name, price, description, created) VALUES ('prod2', 2.00,'p
 INSERT INTO product (name, price, description, created) VALUES ('prod3', 3.00,'prod #3 desc',dateof(now()));
 ```
 
-2. Config your DB connection for Cassandra. E.g.
+ 2. Config your DB connection for Cassandra. E.g.
 ```
 parameters:
     database_driver:   pdo_cassandra
@@ -50,8 +50,7 @@ parameters:
     database_user:     mydbuser
     database_password: mypass
 ```
-
-3. Tests
+ 3. Tests
 All tests below are conducted on Symfony2 enviroment.
 
 - Create a new record
@@ -82,7 +81,7 @@ $products = $query->getResult();
 - Find records using Doctrine's Query Builder
 ```
 $repo = $this->getDoctrine()
-            ->getRepository('PycoLumenakiBundle:Product');
+            ->getRepository('MyBundle:Product');
 $query = $repo->createQueryBuilder('p')
   ->where('p.price > :price')
   ->andWhere('p.name =:name')
@@ -108,7 +107,7 @@ var_dump($query->getResult());
 ```
 - Counting
 ```
-em = $this->getDoctrine()->getManager();
-$query = $em->createQuery("SELECT count(p.name) FROM PycoLumenakiBundle:Product p WHERE p.name= 'A Foo Bar 1' ORDER BY p.created ASC");
+$em = $this->getDoctrine()->getManager();
+$query = $em->createQuery("SELECT count(p.name) FROM MyBundle:Product p WHERE p.name= 'A Foo Bar 1' ORDER BY p.created ASC");
 $cnt = $query->getResult();
 ```
