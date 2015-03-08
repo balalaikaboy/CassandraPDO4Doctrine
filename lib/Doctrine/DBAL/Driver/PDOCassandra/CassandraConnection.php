@@ -1,10 +1,13 @@
 <?php
+
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra;
+
+use Doctrine\DBAL\Driver\PDOConnection;
 
 /**
  * @author Thang Tran <thang.tran@pyramid-consulting.com>
  */
-class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
+class CassandraConnection extends PDOConnection
 {
     public function beginTransaction(){
         return true;     

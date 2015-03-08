@@ -1,6 +1,9 @@
 <?php
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra;
 
+use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\CassandraPlatform;
+use CassandraPDO4Doctrine\Doctrine\DBAL\Schema\CassandraSchemaManager;
+
 /**
  * PDO Cassandra driver.
  * @author Thang Tran <thang.tran@pyramid-consulting.com>
@@ -13,7 +16,7 @@ class Driver implements \Doctrine\DBAL\Driver
     public function connect(array $params, $username = null, $password = null, array $driverOptions = array())
     {
         $driverOptions[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
-        $conn = new \CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra\CassandraConnection(
+        $conn = new CassandraConnection(
             $this->_constructPdoDsn($params),
             $username,
             $password,
@@ -58,7 +61,7 @@ class Driver implements \Doctrine\DBAL\Driver
      */
     public function getDatabasePlatform()
     {
-        return new \CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\CassandraPlatform();
+        return new CassandraPlatform();
     }
 
     /**
@@ -66,7 +69,7 @@ class Driver implements \Doctrine\DBAL\Driver
      */
     public function getSchemaManager(\Doctrine\DBAL\Connection $conn)
     {
-        return new \CassandraPDO4Doctrine\Doctrine\DBAL\Schema\CassandraSchemaManager($conn);
+        return new CassandraSchemaManager($conn);
     }
 
     /**
