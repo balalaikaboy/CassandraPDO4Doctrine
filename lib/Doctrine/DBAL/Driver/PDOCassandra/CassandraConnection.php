@@ -31,7 +31,6 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
     {
         $prepareString = $this->removeTableAlias($prepareString);
         $prepareString = $this->normalizeCount($prepareString);
-        //die('Prepared: '.$prepareString);
         return parent::prepare($prepareString);
         
     }
@@ -43,7 +42,6 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
         $args = func_get_args();
         $sql = $this->removeTableAlias($args[0]);
         $sql = $this->normalizeCount($sql);
-        //die($sql);
         return parent::query($sql);
     }
     /**
@@ -53,7 +51,6 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
     private function normalizeCount($sql)
     {
         $sql = trim(preg_replace('/COUNT\(.*\)/i','COUNT(1)', $sql));
-        //echo($sql);
         return $sql;
     }
     /**
