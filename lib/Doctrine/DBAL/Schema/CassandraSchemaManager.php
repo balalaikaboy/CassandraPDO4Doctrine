@@ -1,5 +1,5 @@
 <?php
-namespace Doctrine\DBAL\Schema;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Schema;
 
 /**
  * Schema manager for Cassandra.

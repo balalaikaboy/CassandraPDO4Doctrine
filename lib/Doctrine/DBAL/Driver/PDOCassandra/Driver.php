@@ -66,7 +66,7 @@ class Driver implements \Doctrine\DBAL\Driver
      */
     public function getSchemaManager(\Doctrine\DBAL\Connection $conn)
     {
-        return new \Doctrine\DBAL\Schema\CassandraSchemaManager($conn);
+        return new \CassandraPDO4Doctrine\Doctrine\DBAL\Schema\CassandraSchemaManager($conn);
     }
 
     /**
