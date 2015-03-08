@@ -58,7 +58,7 @@ class Driver implements \Doctrine\DBAL\Driver
      */
     public function getDatabasePlatform()
     {
-        return new \Doctrine\DBAL\Platforms\CassandraPlatform();
+        return new \CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\CassandraPlatform();
     }
 
     /**

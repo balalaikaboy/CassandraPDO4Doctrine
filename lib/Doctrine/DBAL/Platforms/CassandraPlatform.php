@@ -1,5 +1,5 @@
 <?php
-namespace Doctrine\DBAL\Platforms;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Platforms;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\TableDiff;
@@ -128,7 +128,7 @@ class CassandraPlatform extends AbstractPlatform
      */
     protected function getReservedKeywordsClass()
     {
-        return 'Doctrine\DBAL\Platforms\Keywords\CassandraKeywords';
+        return 'CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\Keywords\CassandraKeywords';
     }
 
 

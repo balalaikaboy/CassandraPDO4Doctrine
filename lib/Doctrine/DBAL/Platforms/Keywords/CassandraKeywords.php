@@ -1,6 +1,6 @@
 <?php
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\Keywords;
-use Doctrine\DBAL\Platforms\Keywords\KeywordList;
+use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\Keywords\KeywordList;
 
 /**
  * Cassandra Keywordlist

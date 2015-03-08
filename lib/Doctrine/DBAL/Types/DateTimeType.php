@@ -19,7 +19,7 @@
 
 namespace Doctrine\DBAL\Types;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
+use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
  * Type that maps an SQL DATETIME/TIMESTAMP to a PHP DateTime object.
