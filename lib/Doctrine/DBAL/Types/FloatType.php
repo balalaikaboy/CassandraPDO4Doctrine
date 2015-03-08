@@ -19,7 +19,8 @@
 
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
 
-use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 
 class FloatType extends Type
 {

@@ -19,7 +19,9 @@
 
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
 
-use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Type;
 
 /**
  * Type that maps an SQL DATETIME/TIMESTAMP to a PHP DateTime object.

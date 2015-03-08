@@ -2,9 +2,8 @@
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Platforms;
 
 use Doctrine\DBAL\DBALException;
-use CassandraPDO4Doctrine\Doctrine\DBAL\Schema\TableDiff;
-use CassandraPDO4Doctrine\Doctrine\DBAL\Schema\Index;
-use CassandraPDO4Doctrine\Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Schema\ForeignKeyConstraint;
 
 /**
  * The CassandraPlatform provides the behavior, features and CQL dialect of the
@@ -244,7 +243,7 @@ class CassandraPlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getAdvancedForeignKeyOptionsSQL(\CassandraPDO4Doctrine\Doctrine\DBAL\Schema\ForeignKeyConstraint $foreignKey)
+    public function getAdvancedForeignKeyOptionsSQL(ForeignKeyConstraint $foreignKey)
     { 
         return '';
     }
