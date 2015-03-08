@@ -1,5 +1,9 @@
 {
     "name": "balalaikaboy/cassandra-pdo-4-doctrine",
+    "homepage": "https://github.com/balalaikaboy/CassandraPDO4Doctrine",
+    "license":" MIT",
+    "description": "Apache Cassandra adapter for doctrine/dbal based on Orange-OpenSource/YACassandraPDO",
+    "keywords": ["cassandra","database","dbal","doctrine","nosql","pdo","storage"],
     "authors": [
         {
             "name": "Thang Tran",
