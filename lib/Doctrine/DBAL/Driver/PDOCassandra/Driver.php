@@ -1,8 +1,6 @@
 <?php
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra;
 
-use Doctrine\DBAL\Connection;
-
 /**
  * PDO Cassandra driver.
  * @author Thang Tran <thang.tran@pyramid-consulting.com>
