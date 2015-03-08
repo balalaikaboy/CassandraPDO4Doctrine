@@ -31,6 +31,6 @@ class CassandraSchemaManager extends AbstractSchemaManager
         }
         $type = $this->_platform->getDoctrineTypeMapping($dbType);
         $options = array();
-        return new Column($tableColumn['field'], \Doctrine\DBAL\Types\Type::getType($type), $options);
+        return new Column($tableColumn['field'], \CassandraPDO4Doctrine\Doctrine\DBAL\Types\Type::getType($type), $options);
     }
 }

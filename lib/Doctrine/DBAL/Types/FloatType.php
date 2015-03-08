@@ -17,7 +17,7 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace Doctrine\DBAL\Types;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
 
 use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\AbstractPlatform;
 
