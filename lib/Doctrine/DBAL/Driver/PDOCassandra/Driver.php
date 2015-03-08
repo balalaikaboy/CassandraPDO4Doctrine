@@ -15,7 +15,7 @@ class Driver implements \Doctrine\DBAL\Driver
     public function connect(array $params, $username = null, $password = null, array $driverOptions = array())
     {
         $driverOptions[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
-        $conn = new \Doctrine\DBAL\Driver\PDOCassandra\CassandraConnection(
+        $conn = new \CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra\CassandraConnection(
             $this->_constructPdoDsn($params),
             $username,
             $password,
