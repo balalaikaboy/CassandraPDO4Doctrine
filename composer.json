@@ -1,0 +1,17 @@
+{
+    "name": "balalaikaboy/cassandra-pdo-4-doctrine",
+    "authors": [
+        {
+            "name": "Thang Tran",
+            "email": "thang.tran@pyramid-consulting.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CassandraPDO4Doctrine\\" : "lib/"
+        }
+    },
+    "require": {
+        "doctrine/dbal": "~2@dev"
+    }
+}
