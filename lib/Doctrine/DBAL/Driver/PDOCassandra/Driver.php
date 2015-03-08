@@ -1,5 +1,5 @@
 <?php
-namespace Doctrine\DBAL\Driver\PDOCassandra;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra;
 
 use Doctrine\DBAL\Connection;
 
