@@ -54,12 +54,10 @@ class DateTimeType extends Type
         return ($value !== null)
             ? $value->format($platform->getDateTimeFormatString()) : null;
     }
-    
-    
+
     /**
-     * Added by TGT to fix 
-     * @param type $hex_code
-     * @return type
+     * @param $str
+     * @return bool|string
      */
     public function getDateStringFromHex($str)
     {

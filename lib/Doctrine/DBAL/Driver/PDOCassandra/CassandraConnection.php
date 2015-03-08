@@ -47,6 +47,7 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
     /**
      * For COUNT(), Cassandra only allows two formats: COUNT(1) and COUNT(*)
      * @param string $sql
+     * @return string $sql
      */
     private function normalizeCount($sql)
     {
@@ -56,6 +57,7 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
     /**
      * Cassandra does not support table alias. Let's remove them
      * @param string $sql
+     * @return string $sql
      */
     private function removeTableAlias($sql)
     {

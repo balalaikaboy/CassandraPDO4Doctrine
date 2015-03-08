@@ -17,6 +17,11 @@ class CassandraPlatform extends AbstractPlatform
      * Adds Cassandra-specific LIMIT clause to the query
      * No support for offset. Pagination must be implemented in-app
      * Restrict record limit to 1000 if not specified (Cassandra's default limit is 1000)
+     *
+     * @param string $query
+     * @param int|null $limit
+     * @param int|null $offset
+     * @return string
      */
     protected function doModifyLimitQuery($query, $limit, $offset)
     {
