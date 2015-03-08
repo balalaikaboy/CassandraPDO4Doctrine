@@ -312,7 +312,9 @@ class CassandraPlatform extends AbstractPlatform
             $check = (isset($field['check']) && $field['check']) ?
                     ' ' . $field['check'] : '';
 
-            $typeDecl = $field['type']->getSqlDeclaration($field, $this);
+            /** @var \Doctrine\DBAL\Types\Type $type */
+            $type = $field['type'];
+            $typeDecl = $type->getSqlDeclaration($field, $this);
             $columnDef = $typeDecl;
         }
 
