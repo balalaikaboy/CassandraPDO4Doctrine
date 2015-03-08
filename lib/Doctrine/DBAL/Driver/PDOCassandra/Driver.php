@@ -36,6 +36,8 @@ class Driver implements \Doctrine\DBAL\Driver
     private function _constructPdoDsn(array $params)
     {
         $dsn = 'cassandra:';
+        $arrHosts = array();
+        $arrPorts = array();
         if (isset($params['host']) && $params['host'] != '') {
             $arrHosts = explode(',', $params['host']);           
         }
