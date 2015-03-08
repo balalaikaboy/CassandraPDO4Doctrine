@@ -17,9 +17,11 @@
  * <http://www.doctrine-project.org>.
  */
 
-namespace Doctrine\DBAL;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL;
 
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\DBALException;
 
 /**
  * Factory for creating Doctrine\DBAL\Connection instances.
@@ -49,7 +51,7 @@ final class DriverManager
             'mysqli' => 'Doctrine\DBAL\Driver\Mysqli\Driver',
             'drizzle_pdo_mysql'  => 'Doctrine\DBAL\Driver\DrizzlePDOMySql\Driver',
             'sqlsrv' => 'Doctrine\DBAL\Driver\SQLSrv\Driver',
-            'pdo_cassandra' => 'Doctrine\DBAL\Driver\PDOCassandra\Driver'
+            'pdo_cassandra' => 'CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra\Driver'
             );
 
     /**
