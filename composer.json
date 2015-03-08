@@ -15,8 +15,17 @@
             "CassandraPDO4Doctrine\\" : "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "CassandraPDO4Doctrine\\tests\\" : "tests/src/"
+        }
+    },
     "require": {
         "ext-pdo_cassandra": "~0.6",
         "doctrine/dbal": "~2@dev"
+    },
+    "require-dev": {
+        "doctrine/orm": "~2",
+        "phpunit/phpunit": "4.7.*@dev"
     }
 }
