@@ -148,12 +148,11 @@ final class DriverManager
         $params = self::parseDatabaseUrl($params);
         
         // check for existing pdo object
-        $pdo = $params['pdo'];
-        if (isset($pdo) && ! $pdo instanceof \PDO) {
+        if (isset($pdo) && ! $params['pdo'] instanceof \PDO) {
             throw DBALException::invalidPdoInstance();
         } elseif (isset($pdo)) {
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $params['driver'] = 'pdo_' . $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+            $params['pdo']->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $params['driver'] = 'pdo_' . $params['pdo']->getAttribute(\PDO::ATTR_DRIVER_NAME);
         } else {
             self::_checkParams($params);
         }
