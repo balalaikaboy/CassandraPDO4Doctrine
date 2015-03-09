@@ -1,6 +1,6 @@
 CREATE KEYSPACE test_cp4d WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
 
 USE test_cp4d;
-CREATE TABLE product (name varchar,price float,description varchar,created timestamp,
+CREATE TABLE product (name varchar,price varchar,description varchar,created timestamp,
     PRIMARY KEY (name,created,price))
     WITH CLUSTERING ORDER BY (created DESC);

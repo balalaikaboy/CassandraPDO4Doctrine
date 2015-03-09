@@ -2,6 +2,6 @@ USE test_cp4d;
 
 TRUNCATE product;
 
-INSERT INTO product (name, price, description, created) VALUES ('prod1', 1.00,'prod #1 desc',dateof(now()));
-INSERT INTO product (name, price, description, created) VALUES ('prod2', 2.00,'prod #2 desc',dateof(now()));
-INSERT INTO product (name, price, description, created) VALUES ('prod3', 3.00,'prod #3 desc',dateof(now()));
+INSERT INTO product (name, price, description, created) VALUES ('prod1', '1.00','prod #1 desc',dateof(now()));
+INSERT INTO product (name, price, description, created) VALUES ('prod2', '2.00','prod #2 desc',dateof(now()));
+INSERT INTO product (name, price, description, created) VALUES ('prod3', '3.00','prod #3 desc',dateof(now()));

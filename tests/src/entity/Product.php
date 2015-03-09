@@ -20,8 +20,8 @@ class Product {
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string
+     * @ORM\Column(type="float")
+     * @var float
      */
     protected $price;
 
@@ -54,7 +54,7 @@ class Product {
     }
 
     /**
-     * @return string
+     * @return float
      */
     public function getPrice()
     {
@@ -62,7 +62,7 @@ class Product {
     }
 
     /**
-     * @param string $price
+     * @param float $price
      */
     public function setPrice($price)
     {
