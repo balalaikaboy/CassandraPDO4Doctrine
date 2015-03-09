@@ -39,6 +39,9 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
         // the connection configuration
         $dbParams = array(
             'driver'   => 'pdo_cassandra',
+            'host'     => 'localhost',
+            'port'     => '9160',
+            'cqlversion' => '3.0.0',
             'user'     => $GLOBALS['DB_USER'],
             'password' => $GLOBALS['DB_PASSWD'],
             'dbname'   => $GLOBALS['DB_DBNAME'],
