@@ -1,10 +1,9 @@
 <?php
-namespace Doctrine\DBAL\Platforms;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Platforms;
 
 use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Schema\TableDiff;
-use Doctrine\DBAL\Schema\Index;
-use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Schema\ForeignKeyConstraint;
 
 /**
  * The CassandraPlatform provides the behavior, features and CQL dialect of the
@@ -18,6 +17,11 @@ class CassandraPlatform extends AbstractPlatform
      * Adds Cassandra-specific LIMIT clause to the query
      * No support for offset. Pagination must be implemented in-app
      * Restrict record limit to 1000 if not specified (Cassandra's default limit is 1000)
+     *
+     * @param string $query
+     * @param int|null $limit
+     * @param int|null $offset
+     * @return string
      */
     protected function doModifyLimitQuery($query, $limit, $offset)
     {
@@ -128,7 +132,7 @@ class CassandraPlatform extends AbstractPlatform
      */
     protected function getReservedKeywordsClass()
     {
-        return 'Doctrine\DBAL\Platforms\Keywords\CassandraKeywords';
+        return 'CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\Keywords\CassandraKeywords';
     }
 
 
@@ -244,7 +248,7 @@ class CassandraPlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getAdvancedForeignKeyOptionsSQL(\Doctrine\DBAL\Schema\ForeignKeyConstraint $foreignKey)
+    public function getAdvancedForeignKeyOptionsSQL(ForeignKeyConstraint $foreignKey)
     { 
         return '';
     }
@@ -313,7 +317,9 @@ class CassandraPlatform extends AbstractPlatform
             $check = (isset($field['check']) && $field['check']) ?
                     ' ' . $field['check'] : '';
 
-            $typeDecl = $field['type']->getSqlDeclaration($field, $this);
+            /** @var \Doctrine\DBAL\Types\Type $type */
+            $type = $field['type'];
+            $typeDecl = $type->getSqlDeclaration($field, $this);
             $columnDef = $typeDecl;
         }
 

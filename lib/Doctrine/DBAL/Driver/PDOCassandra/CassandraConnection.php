@@ -1,12 +1,13 @@
 <?php
-namespace Doctrine\DBAL\Driver\PDOCassandra;
 
-use PDO;
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Driver\PDOCassandra;
+
+use Doctrine\DBAL\Driver\PDOConnection;
 
 /**
  * @author Thang Tran <thang.tran@pyramid-consulting.com>
  */
-class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
+class CassandraConnection extends PDOConnection
 {
     public function beginTransaction(){
         return true;     
@@ -33,7 +34,6 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
     {
         $prepareString = $this->removeTableAlias($prepareString);
         $prepareString = $this->normalizeCount($prepareString);
-        //die('Prepared: '.$prepareString);
         return parent::prepare($prepareString);
         
     }
@@ -45,22 +45,22 @@ class CassandraConnection extends \Doctrine\DBAL\Driver\PDOConnection
         $args = func_get_args();
         $sql = $this->removeTableAlias($args[0]);
         $sql = $this->normalizeCount($sql);
-        //die($sql);
         return parent::query($sql);
     }
     /**
      * For COUNT(), Cassandra only allows two formats: COUNT(1) and COUNT(*)
-     * @param type $sql
+     * @param string $sql
+     * @return string $sql
      */
     private function normalizeCount($sql)
     {
         $sql = trim(preg_replace('/COUNT\(.*\)/i','COUNT(1)', $sql));
-        //echo($sql);
         return $sql;
     }
     /**
      * Cassandra does not support table alias. Let's remove them
-     * @param type $sql
+     * @param string $sql
+     * @return string $sql
      */
     private function removeTableAlias($sql)
     {

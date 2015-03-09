@@ -1,5 +1,10 @@
 <?php
-namespace Doctrine\DBAL\Schema;
+
+namespace CassandraPDO4Doctrine\Doctrine\DBAL\Schema;
+
+use Doctrine\DBAL\Schema\AbstractSchemaManager;
+use Doctrine\DBAL\Schema\Column;
+use Doctrine\DBAL\Types\Type;
 
 /**
  * Schema manager for Cassandra.
@@ -31,6 +36,6 @@ class CassandraSchemaManager extends AbstractSchemaManager
         }
         $type = $this->_platform->getDoctrineTypeMapping($dbType);
         $options = array();
-        return new Column($tableColumn['field'], \Doctrine\DBAL\Types\Type::getType($type), $options);
+        return new Column($tableColumn['field'], Type::getType($type), $options);
     }
 }
