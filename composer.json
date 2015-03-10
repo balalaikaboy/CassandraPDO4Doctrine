@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "ext-pdo_cassandra": "~0.6",
+        "ext-pdo_cassandra": "~0.5",
         "doctrine/dbal": "~2@dev"
     },
     "require-dev": {

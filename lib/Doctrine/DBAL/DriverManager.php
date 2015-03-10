@@ -144,13 +144,13 @@ final class DriverManager
         if ( ! $eventManager) {
             $eventManager = new EventManager();
         }
-
+        
         $params = self::parseDatabaseUrl($params);
         
         // check for existing pdo object
-        if (isset($pdo) && ! $params['pdo'] instanceof \PDO) {
+        if (isset($params['pdo']) && ! $params['pdo'] instanceof \PDO) {
             throw DBALException::invalidPdoInstance();
-        } elseif (isset($pdo)) {
+        } else if (isset($params['pdo'])) {
             $params['pdo']->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $params['driver'] = 'pdo_' . $params['pdo']->getAttribute(\PDO::ATTR_DRIVER_NAME);
         } else {
@@ -164,7 +164,8 @@ final class DriverManager
 
         $driver = new $className();
 
-        $wrapperClass = 'Doctrine\DBAL\Connection';
+        //$wrapperClass = 'Doctrine\DBAL\Connection';
+        $wrapperClass = 'CassandraPDO4Doctrine\Doctrine\DBAL\Connection';
         if (isset($params['wrapperClass'])) {
             if (is_subclass_of($params['wrapperClass'], $wrapperClass)) {
                $wrapperClass = $params['wrapperClass'];
@@ -172,7 +173,6 @@ final class DriverManager
                 throw DBALException::invalidWrapperClass($params['wrapperClass']);
             }
         }
-
         return new $wrapperClass($params, $driver, $config, $eventManager);
     }
 

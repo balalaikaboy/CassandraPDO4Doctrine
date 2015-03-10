@@ -1,9 +1,11 @@
 <phpunit bootstrap="vendor/autoload.php">
     <php>
-        <var name="DB_DSN" value="cassandra:dbname=test_cp4d;host=localhost" />
-        <var name="DB_USER" value="no_username" />
-        <var name="DB_PASSWD" value="no_password" />
-        <var name="DB_DBNAME" value="test_cp4d" />
+        <var name="DB_DRIVER" value="pdo_cassandra" />
+        <var name="DB_HOST" value="dbaddr" />
+        <var name="DB_PORT" value="9160" />
+        <var name="DB_USER" value="dbuser" />
+        <var name="DB_PASSWD" value="dbpassword" />
+        <var name="DB_DBNAME" value="dbname" />
     </php>
     <testsuites>
         <testsuite name="CassandraPDO4Doctrine">

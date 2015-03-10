@@ -4,7 +4,7 @@ namespace CassandraPDO4Doctrine\Doctrine\DBAL\Schema;
 
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column;
-use Doctrine\DBAL\Types\Type;
+use CassandraPDO4Doctrine\Doctrine\DBAL\Types\Type as Type;
 
 /**
  * Schema manager for Cassandra.

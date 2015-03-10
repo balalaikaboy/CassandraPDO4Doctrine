@@ -20,8 +20,8 @@ class Product {
     protected $name;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string
+     * @ORM\Column(type="float")
+     * @var float
      */
     protected $price;
 

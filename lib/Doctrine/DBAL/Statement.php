@@ -16,42 +16,28 @@
  * and is licensed under the MIT license. For more information, see
  * <http://www.doctrine-project.org>.
  */
-
-namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
-use Doctrine\DBAL\Platforms\AbstractPlatform; 
+namespace CassandraPDO4Doctrine\Doctrine\DBAL;
 use CassandraPDO4Doctrine\Doctrine\DBAL\Types\Type as Type;
-
-class FloatType extends Type
+use Doctrine\DBAL\Types\Type as OrigType;
+class Statement extends \Doctrine\DBAL\Statement
 {
-
-     /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function bindValue($name, $value, $type = null)
     {
-        return Type::FLOAT;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
-    {
-        return $platform->getFloatDeclarationSQL($fieldDeclaration);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
-    {
-        return (null === $value) ? null : (double) $value;
-    }
-     /**
-      * It's best to let PDO driver guess the binding type rather than forcing to string
-     */
-    public function getBindingType()
-    {
-        return \PDO::PARAM_NULL;
+        $this->params[$name] = $value;
+        $this->types[$name] = $type;
+        if ($type !== null) {
+            if (is_string($type)) {
+                $type = Type::getType($type);
+            }
+            if ($type instanceof Type || $type instanceof OrigType) {
+                $value = $type->convertToDatabaseValue($value, $this->platform);
+                $bindingType = $type->getBindingType();
+            } else {
+                $bindingType = $type; // PDO::PARAM_* constants
+            }
+            return $this->stmt->bindValue($name, $value, $bindingType);
+        } else {
+            return $this->stmt->bindValue($name, $value);
+        }
     }
 }
