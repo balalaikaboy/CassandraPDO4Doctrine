@@ -61,14 +61,13 @@ class DateTimeType extends Type
     {
         if(is_numeric($str)){
             $time = $str / 1000;
-            $dateStr = date('Y-m-d H:i:s', $time);
+            return date('Y-m-d H:i:s', $time);
         }
         else{
             $date = unpack('H*', $str);
             $time = hexdec($date[1]) / 1000;
-            $dateStr = date('Y-m-d H:i:s', $time);
+            return date('Y-m-d H:i:s', $time);
         }
-        return $dateStr;
     }
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
