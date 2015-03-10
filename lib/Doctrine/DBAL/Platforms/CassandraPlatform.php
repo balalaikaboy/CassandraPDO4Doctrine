@@ -1,6 +1,5 @@
 <?php
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Platforms;
-
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\ForeignKeyConstraint;

@@ -38,19 +38,18 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
 
         // the connection configuration
         $dbParams = array(
-            'driver'   => 'pdo_cassandra',
-            'host'     => 'localhost',
-            'port'     => '9160',
-            'cqlversion' => '3.0.0',
-            'user'     => $GLOBALS['DB_USER'],
-            'password' => $GLOBALS['DB_PASSWD'],
-            'dbname'   => $GLOBALS['DB_DBNAME'],
+            'driver'     => $GLOBALS['DB_DRIVER'],
+            'host'       => $GLOBALS['DB_HOST'],
+            'port'       => $GLOBALS['DB_PORT'],
+            'cqlversion' => $GLOBALS['DB_CQLVERSION'],
+            'user'       => $GLOBALS['DB_USER'],
+            'password'   => $GLOBALS['DB_PASSWD'],
+            'dbname'     => $GLOBALS['DB_DBNAME'],
         );
 
         $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode,null,null,false);
-
         $conn = DriverManager::getConnection($dbParams,$config);
-
+        
         $entityManager = EntityManager::create($conn, $config);
         return $entityManager;
     }
