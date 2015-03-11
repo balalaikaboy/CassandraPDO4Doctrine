@@ -25,6 +25,7 @@
         "doctrine/dbal": "~2@dev"
     },
     "require-dev": {
+        "ext-xdebug": "~2@stable",
         "doctrine/orm": "~2",
         "phpunit/phpunit": "4.7.*@dev"
     }

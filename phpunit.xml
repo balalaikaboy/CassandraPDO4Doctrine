@@ -1,15 +1,25 @@
 <phpunit bootstrap="vendor/autoload.php">
     <php>
         <var name="DB_DRIVER" value="pdo_cassandra" />
-        <var name="DB_HOST" value="dbaddr" />
+        <var name="DB_HOST" value="localhost" />
         <var name="DB_PORT" value="9160" />
+        <var name="DB_CQLVERSION" value="3.0.0" />
         <var name="DB_USER" value="dbuser" />
         <var name="DB_PASSWD" value="dbpassword" />
-        <var name="DB_DBNAME" value="dbname" />
+        <var name="DB_DBNAME" value="test_cp4d" />
     </php>
     <testsuites>
         <testsuite name="CassandraPDO4Doctrine">
             <directory>tests/src</directory>
         </testsuite>
     </testsuites>
+
+    <logging>
+        <log type="coverage-html"
+             target="target/report/phpunit/coverage/html/"
+             lowUpperBound="35"
+             highLowerBound="70"
+        />
+    </logging>
+
 </phpunit>
