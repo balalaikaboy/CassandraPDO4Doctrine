@@ -4,6 +4,7 @@ namespace CassandraPDO4Doctrine\tests;
 
 use CassandraPDO4Doctrine\Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Repository\DefaultRepositoryFactory;
 use Doctrine\ORM\Tools\Setup;
 
 class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
@@ -28,6 +29,7 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * FIXME: Re-creates object for every test. DI container ?
      * @return EntityManager
      * @throws \Doctrine\ORM\ORMException
      */
@@ -52,6 +54,17 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
         
         $entityManager = EntityManager::create($conn, $config);
         return $entityManager;
+    }
+
+    /**
+     * FIXME: Re-creates object for every test. DI container ?
+     * @param string $entityName
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getRepository($entityName) {
+        $em = $this->getEntityManager();
+        $factory = new DefaultRepositoryFactory($em,$entityName);
+        return $factory->getRepository($em,$entityName);
     }
 
 }
