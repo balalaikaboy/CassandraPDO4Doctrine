@@ -115,6 +115,13 @@ class CassandraPlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
+    public function getDateTimeFormatString() {
+        return 'U';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getBooleanTypeDeclarationSQL(array $field)
     {
         return 'boolean';

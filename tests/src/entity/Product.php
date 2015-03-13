@@ -101,6 +101,6 @@ class Product {
         $this->created = $created;
     }
 
-
+    static public function className() { return get_called_class(); }
 
 }
