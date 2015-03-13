@@ -19,7 +19,7 @@
 
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use CassandraPDO4Doctrine\Doctrine\DBAL\Types\Type as Type;
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\ConversionException;
 
 /**
@@ -27,33 +27,8 @@ use Doctrine\DBAL\Types\ConversionException;
  *
  * @since 2.0
  */
-class DateTimeType extends Type
+class CassandraDateTimeType extends DateTimeType
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return Type::DATETIME;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
-    {
-        return $platform->getDateTimeTypeDeclarationSQL($fieldDeclaration);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
-    {
-        return ($value !== null)
-            ? $value->format($platform->getDateTimeFormatString()) : null;
-    }
 
     /**
      * @param $str

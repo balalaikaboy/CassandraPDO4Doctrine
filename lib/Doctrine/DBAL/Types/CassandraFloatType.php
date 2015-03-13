@@ -19,34 +19,10 @@
 
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform; 
-use CassandraPDO4Doctrine\Doctrine\DBAL\Types\Type as Type;
+use \Doctrine\DBAL\Types\FloatType;
 
-class FloatType extends Type
+class CassandraFloatType extends FloatType
 {
-
-     /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return Type::FLOAT;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
-    {
-        return $platform->getFloatDeclarationSQL($fieldDeclaration);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
-    {
-        return (null === $value) ? null : (double) $value;
-    }
      /**
       * It's best to let PDO driver guess the binding type rather than forcing to string
      */

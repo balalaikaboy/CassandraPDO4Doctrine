@@ -6,6 +6,7 @@ use CassandraPDO4Doctrine\Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Repository\DefaultRepositoryFactory;
 use Doctrine\ORM\Tools\Setup;
+use Doctrine\DBAL\Types\Type;
 
 class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
 
@@ -15,17 +16,17 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
 
     static public function setUpBeforeClass() {
         $D = self::_getDataDir();
-        system("cqlsh < {$D}/db_create.cql3");
+        //system("cqlsh < {$D}/db_create.cql3");
     }
 
     static public function tearDownAfterClass() {
         $D = self::_getDataDir();
-        system("cqlsh < {$D}/db_drop.cql3");
+       // system("cqlsh < {$D}/db_drop.cql3");
     }
 
     public function setUp() {
         $D = self::_getDataDir();
-        system("cqlsh < {$D}/db_data.cql3");
+      //  system("cqlsh < {$D}/db_data.cql3");
     }
 
     /**
@@ -48,7 +49,6 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
             'password'   => $GLOBALS['DB_PASSWD'],
             'dbname'     => $GLOBALS['DB_DBNAME'],
         );
-
         $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode,null,null,false);
         $conn = DriverManager::getConnection($dbParams,$config);
         

@@ -115,13 +115,6 @@ class CassandraPlatform extends AbstractPlatform
     /**
      * {@inheritDoc}
      */
-    public function getDateTimeFormatString() {
-        return 'U';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getBooleanTypeDeclarationSQL(array $field)
     {
         return 'boolean';
@@ -295,15 +288,15 @@ class CassandraPlatform extends AbstractPlatform
             'boolean'           => 'boolean',
             'counter'       => 'bigint',
             'decimal'        => 'decimal',
-            'double'      => 'float',
-            'float'    => 'float',
+            'double'      => 'cassandra_float',
+            'float'    => 'cassandra_float',
             'inet'      => 'string',
             'int'          => 'integer',
             'list'       => 'object',
             'map'        => 'string',
             'set'          => 'string',
             'text'          => 'string',
-            'timestamp'      => 'datetime',
+            'timestamp'      => 'cassandra_datetime',
             'timeuuid'     => 'guid',
             'tuple'          => 'object',
             'uuid'         => 'guid',

@@ -22,7 +22,7 @@ namespace CassandraPDO4Doctrine\Doctrine\DBAL;
 use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DBALException;
-
+use Doctrine\DBAL\Types\Type;
 /**
  * Factory for creating Doctrine\DBAL\Connection instances.
  *
@@ -40,6 +40,7 @@ final class DriverManager
      *
      * @var array
      */
+     static $instance = null;
      private static $_driverMap = array(
          'pdo_mysql'          => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
          'pdo_sqlite'         => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
@@ -164,8 +165,7 @@ final class DriverManager
 
         $driver = new $className();
 
-        //$wrapperClass = 'Doctrine\DBAL\Connection';
-        $wrapperClass = 'CassandraPDO4Doctrine\Doctrine\DBAL\Connection';
+        $wrapperClass = 'Doctrine\DBAL\Connection';
         if (isset($params['wrapperClass'])) {
             if (is_subclass_of($params['wrapperClass'], $wrapperClass)) {
                $wrapperClass = $params['wrapperClass'];
@@ -173,6 +173,13 @@ final class DriverManager
                 throw DBALException::invalidWrapperClass($params['wrapperClass']);
             }
         }
+        if (self::$instance === null) {
+            self::$instance = 1;
+            //add new Cassandra types
+            Type::addType('cassandra_float', 'CassandraPDO4Doctrine\Doctrine\DBAL\Types\CassandraFloatType');
+            Type::addType('cassandra_datetime', 'CassandraPDO4Doctrine\Doctrine\DBAL\Types\CassandraDateTimeType');
+        }
+        
         return new $wrapperClass($params, $driver, $config, $eventManager);
     }
 

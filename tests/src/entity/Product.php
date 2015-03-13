@@ -20,7 +20,7 @@ class Product {
     protected $name;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="cassandra_float")
      * @var float
      */
     protected $price;
@@ -32,7 +32,7 @@ class Product {
     protected $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="cassandra_datetime")
      * @var \DateTime
      */
     protected $created;

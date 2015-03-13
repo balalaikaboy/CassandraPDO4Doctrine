@@ -7,12 +7,12 @@ class CP4DTest extends CP4DBaseTestCase {
 
     // FIXME: No assertions, just check
     public function testCreateNewRecord() {
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        date_default_timezone_set('UTC');
         $product = new Product();
-        $product->setName('A Foo Bar 2');
+        $product->setName('A Foo Bar');
         $product->setPrice(1.12);
         $product->setDescription('blah blah blah');
-        $product->setCreated(new \DateTime());
+        $product->setCreated(new \DateTime(date('Y-m-d')));
         $em = $this->getEntityManager();
         $em->persist($product);
         $em->flush();
@@ -22,7 +22,7 @@ class CP4DTest extends CP4DBaseTestCase {
         $repo = $this->getRepository(Product::className());
         /** @var Product[] $products */
         $products = $repo->findBy(
-            array('name' => 'prod2'),
+            array('name' => 'A Foo Bar'),
             array('created' => 'ASC')
         );
 
@@ -41,22 +41,15 @@ class CP4DTest extends CP4DBaseTestCase {
         $this->assertNotEmpty($products);
         $this->assertInstanceOf(Product::className(),$products[0]);
     }
-
-    /**
-     * FIXME: Throws type exception
-Doctrine\DBAL\DBALException: An exception occurred while executing 'SELECT p0_.name AS name0, p0_.price AS price1, p0_.description AS description2, p0_.created AS created3 FROM product p0_ WHERE p0_.price > ? AND p0_.name = ? AND p0_.created = ? ORDER BY p0_.created ASC' with params [19.99, "A Foo Bar 1", "2014-12-10"]:
-CQLSTATE[HY000] [2] Invalid STRING constant (19.99) for price of type float
-     * @-requires PHP 999.9.9
-     */
     public function testFindByQueryBuilder() {
         $repo = $this->getRepository(Product::className());
         $query = $repo->createQueryBuilder('p')
-//            ->where('p.price > :price')
             ->where('p.name =:name')
             ->andWhere('p.created =:created')
-//            ->setParameter('price', 19.99,'float')//must specify type explicitly
-            ->setParameter('name', 'prod1')
-            ->setParameter('created', '2014-12-10')
+            ->andWhere('p.price =:price')
+            ->setParameter('price', 1.12,'cassandra_float')//must specify type explicitly
+            ->setParameter('name', 'A Foo Bar')
+            ->setParameter('created', date('Y-m-d'))
             ->orderBy('p.created', 'ASC')
             ->getQuery();
         $products = $query->getResult();
@@ -72,7 +65,7 @@ CQLSTATE[HY000] [2] Invalid STRING constant (19.99) for price of type float
         $rsm->addScalarResult('price', 'price');
 
         $query = $em->createNativeQuery('SELECT * FROM product WHERE name = ?', $rsm);
-        $query->setParameter(1, 'prod1');
+        $query->setParameter(1, 'A Foo Bar');
         $products = $query->getResult();
 
         $this->assertNotEmpty($products);
@@ -81,7 +74,7 @@ CQLSTATE[HY000] [2] Invalid STRING constant (19.99) for price of type float
 
     public function testCounting() {
         $em = $this->getEntityManager();
-        $query = $em->createQuery("SELECT count(p.name) FROM " . Product::className() . " p WHERE p.name= 'prod2' ORDER BY p.created ASC");
+        $query = $em->createQuery("SELECT count(p.name) FROM " . Product::className() . " p WHERE p.name= 'A Foo Bar' ORDER BY p.created ASC");
         $cnt = $query->getResult();
         var_dump($cnt);
         $this->assertEquals($cnt,[0=>[1=>1]]);
