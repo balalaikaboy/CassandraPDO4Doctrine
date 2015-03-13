@@ -18,6 +18,7 @@
  */
 
 namespace CassandraPDO4Doctrine\Doctrine\DBAL\Types;
+use CassandraPDO4Doctrine\Doctrine\DBAL\Platforms\CassandraPlatform;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\ConversionException;
@@ -63,5 +64,30 @@ class CassandraDateTimeType extends DateTimeType
 
         return $val;
     }
+
+    public function convertToDatabaseValue($value, CassandraPlatform $platform)
+    {
+
+        if ($value === null || is_string($value) ) {
+            return $value;
+        }
+
+        $val = null;
+
+        if ( $value instanceof \DateTime) {
+            $val = $value->format($platform->getDateTimeFormatStringToDatabase());
+        }
+
+        if ( ! $val) {
+            throw ConversionException::conversionFailedFormat(
+                $value,
+                $this->getName(),
+                $platform->getDateTimeFormatStringToDatabase()
+            );
+        }
+
+        return $val;
+    }
+
 
 }
