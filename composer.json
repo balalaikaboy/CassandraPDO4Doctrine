@@ -28,5 +28,12 @@
         "ext-xdebug": "~2@stable",
         "doctrine/orm": "~2",
         "phpunit/phpunit": "4.7.*@dev"
+    },
+    "archive": {
+        "exclude": [
+            "phpunit.xml",
+            "target",
+            "tests"
+        ]
     }
 }
