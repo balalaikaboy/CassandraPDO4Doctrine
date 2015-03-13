@@ -76,7 +76,6 @@ class CP4DTest extends CP4DBaseTestCase {
         $em = $this->getEntityManager();
         $query = $em->createQuery("SELECT count(p.name) FROM " . Product::className() . " p WHERE p.name= 'A Foo Bar' ORDER BY p.created ASC");
         $cnt = $query->getResult();
-        var_dump($cnt);
         $this->assertEquals($cnt,[0=>[1=>1]]);
     }
 
