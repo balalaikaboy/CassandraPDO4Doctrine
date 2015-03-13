@@ -112,6 +112,11 @@ class CassandraPlatform extends AbstractPlatform
         return 'timestamp';
     }
 
+    public function getDateTimeFormatStringToDatabase()
+    {
+        return 'Y-m-d H:i:sO';
+    }
+
     /**
      * {@inheritDoc}
      */
