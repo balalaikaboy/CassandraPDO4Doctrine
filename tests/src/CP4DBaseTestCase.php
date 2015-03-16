@@ -16,17 +16,17 @@ class CP4DBaseTestCase extends \PHPUnit_Framework_TestCase {
 
     static public function setUpBeforeClass() {
         $D = self::_getDataDir();
-        //system("cqlsh < {$D}/db_create.cql3");
+        system("cqlsh < {$D}/db_create.cql3");
     }
 
     static public function tearDownAfterClass() {
         $D = self::_getDataDir();
-       // system("cqlsh < {$D}/db_drop.cql3");
+        system("cqlsh < {$D}/db_drop.cql3");
     }
 
     public function setUp() {
         $D = self::_getDataDir();
-      //  system("cqlsh < {$D}/db_data.cql3");
+        system("cqlsh < {$D}/db_data.cql3");
     }
 
     /**
