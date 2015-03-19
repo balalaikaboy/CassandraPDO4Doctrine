@@ -65,7 +65,7 @@ class CassandraDateTimeType extends DateTimeType
         return $val;
     }
 
-    public function convertToDatabaseValue($value, CassandraPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
 
         if ($value === null || is_string($value) ) {
